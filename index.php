@@ -1,3 +1,13 @@
+<?php
+    include_once('./functions.php');
+
+    $app = new CrudApp();
+
+    
+
+?>  
+
+
 <!doctype html>
 <html lang="en">
   <head>
