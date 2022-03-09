@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+.title{
+    color: rgb(125, 125, 252);
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.label{
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(20, 2, 43);
+}
+
+.submit-btn{
+    font-weight: bold;
+}
