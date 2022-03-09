@@ -31,18 +31,44 @@
                 </div>
 
                 <div class="input-group flex-column mb-4"> 
-                    <label for="photo" class="label mb-1">Upload Your Photo</label>
-                    <input type="file" name="photo" id="photo" >
+                    <label for="" class="label mb-1">Upload Your Photo</label>
+                    <input type="file" class="form-control w-100" name="photo" id="photo" >
                 </div>
 
                 <div class="input-group"> 
-                    <input type="submit" value="Add Information" class="bg-success text-light form-control submit-btn">
+                    <input type="submit" value="Add Information" class="bg-success text-light form-control submit-btn bold">
                 </div>
             </form>
         </div>
 
     </div>
 
+    <div class="container py-3 px-4 shadow"> 
+        <table class="table table-responsive"> 
+
+            <thead> 
+                <th class="">Id</th>
+                <th class="">Name</th>
+                <th class="">Roll</th>
+                <th class="">Image</th>
+                <th class="">Actions</th>
+            </thead>
+
+            <tbody> 
+                <tr> 
+                    <td class="bold">1</td>
+                    <td class="bold">Md Faras</td>
+                    <td class="bold">001</td>
+                    <td><img class="student-image" src="./image/test.jpg" alt="Md Faras Uddin"></td>
+                    <td>
+                        <a href="#" class="btn btn-sm btn-warning bold text-light">EDIT</a>
+                        <a href="#" class="btn btn-sm btn-danger bold text-light">DELETE</a>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

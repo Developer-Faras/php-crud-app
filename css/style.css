@@ -17,6 +17,11 @@
     color: rgb(20, 2, 43);
 }
 
-.submit-btn{
+.bold{
     font-weight: bold;
+}
+
+.student-image{
+    width: 100px;
+    height: 60px;
 }
