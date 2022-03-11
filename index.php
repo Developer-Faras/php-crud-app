@@ -3,7 +3,10 @@
 
     $app = new CrudApp();
 
-    
+    // Add Information
+    if(isset($_POST['add_info'])){
+       $return_massage = $app->addInformation($_POST);
+    }
 
 ?>  
 
@@ -29,24 +32,32 @@
     <div class="container py-3 px-4 shadow my-4 mb-5"> 
         <h2 class="title text-center mb-3">Student App CRUD With PHP OOP</h2>
 
+        <h5 class="return_massage">
+            <?php 
+                if(isset($return_massage)){
+                    echo($return_massage);
+                }
+            ?>
+        </h5>
+
         <div class="form-wraper"> 
             <form action="" method="post" enctype="multipart/form-data">
 
                 <div class="input-group mb-3"> 
-                    <input class="form-control" type="text" name="name" id="name" placeholder="Enter Name">
+                    <input class="form-control" type="text" name="std_name" id="name" placeholder="Enter Name">
                 </div>
                 
                 <div class="input-group mb-3"> 
-                    <input class="form-control" type="text" name="roll" id="roll" placeholder="Enter Roll">
+                    <input class="form-control" type="text" name="std_rool" id="roll" placeholder="Enter Roll">
                 </div>
 
                 <div class="input-group flex-column mb-4"> 
                     <label for="" class="label mb-1">Upload Your Photo</label>
-                    <input type="file" class="form-control w-100" name="photo" id="photo" >
+                    <input type="file" class="form-control w-100" name="std_photo" id="photo" >
                 </div>
 
                 <div class="input-group"> 
-                    <input type="submit" value="Add Information" class="bg-success text-light form-control submit-btn bold">
+                    <input name="add_info" type="submit" value="Add Information" class="bg-success text-light form-control submit-btn bold">
                 </div>
             </form>
         </div>

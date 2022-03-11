@@ -19,6 +19,25 @@
         }
 
 
+        // Add Function
+        public function addInformation($data){
+            $form_data = $data;
+
+            $std_name = $form_data['std_name'];
+            $std_rool = $form_data['std_rool'];
+            $std_photo_name = $_FILES['std_photo']['name'];
+            $std_photo_tmp = $_FILES['std_photo']['tmp_name'];
+
+            $query = "INSERT INTO `student_data`(`name`, `rool`, `img`) VALUES ('$std_name',$std_rool,'$std_photo_name')";
+
+            if(mysqli_query($this->conn, $query)){
+                move_uploaded_file($std_photo_tmp, 'upload/'.$std_photo_name);
+
+                return 'Information Added Successfully';
+            }
+        }
+
+
         
     }
 
