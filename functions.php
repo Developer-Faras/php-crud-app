@@ -6,18 +6,20 @@
 
         public function __construct(){
             // Connect To DB
-            $db_host = '127.0.0.1';
-            $db_user = 'root';
-            $db_pass = '';
-            $db_name = 'crud-app';
+            define("DB_SERVER", "localhost");
+            define("DB_USER", "root");
+            define("DB_PASSWORD", "");
+            define("DB_DATABASE", "crud-app");
 
-            $this->conn = mysqli_connect($db_host, $db_user, $db_pass< $db_name);
+            $this->conn = mysqli_connect(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
 
             if(!$this->conn){
                 die('Database Connection Failed'. mysqli_connect_error($this->conn));
             }
-
         }
+
+
+        
     }
 
 ?>
