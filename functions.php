@@ -11,15 +11,17 @@
             define("DB_PASSWORD", "");
             define("DB_DATABASE", "crud-app");
 
-            $this->conn = mysqli_connect(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
+            // $this->conn = mysqli_connect(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
+            $this->conn = new mysqli(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
+            
 
-            if(!$this->conn){
-                die('Database Connection Failed'. mysqli_connect_error($this->conn));
-            }
+            if ($this->conn->connect_error) {
+                die("Connection failed: " . $this->conn->connect_error);
+              }
         }
 
 
-        // Add Function
+        // Add Student Function
         public function addInformation($data){
             $form_data = $data;
 
@@ -29,16 +31,34 @@
             $std_photo_name = $_FILES['std_photo']['name'];
             $std_photo_tmp = $_FILES['std_photo']['tmp_name'];
 
-            $query = "INSERT INTO `student_data`(`name`, `rool`, `img`) VALUES ('$std_name',$std_rool,'$std_photo_name')";
+            $sql = "INSERT INTO `student_data`(`name`, `rool`, `img`) VALUES ('$std_name',$std_rool,'$std_photo_name')";
 
-            if(mysqli_query($this->conn, $query)){
+            if ($this->conn->query($sql) === TRUE) {
                 move_uploaded_file($std_photo_tmp, 'upload/'.$std_photo_name);
 
                 return 'Information Added Successfully';
+            } else {
+                echo "Error: " . $sql . "<br>" . $this->conn->error;
             }
+
+            // if(mysqli_query($this->conn, $query)){
+            //     move_uploaded_file($std_photo_tmp, 'upload/'.$std_photo_name);
+
+            //     return 'Information Added Successfully';
+            // }
         }
 
+        // Select Student Data
+        public function selectInformation(){
 
+            $sql = "SELECT * FROM student_data";
+            $result = $this->conn->query($sql);
+
+            if($result){
+                return $result;
+            }
+
+        }
         
     }
 
