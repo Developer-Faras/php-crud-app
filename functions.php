@@ -25,6 +25,7 @@
 
             $std_name = $form_data['std_name'];
             $std_rool = $form_data['std_rool'];
+            $std_photo = $_FILES['std_photo'];
             $std_photo_name = $_FILES['std_photo']['name'];
             $std_photo_tmp = $_FILES['std_photo']['tmp_name'];
 

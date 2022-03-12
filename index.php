@@ -32,7 +32,7 @@
     <div class="container py-3 px-4 shadow my-4 mb-5"> 
         <h2 class="title text-center mb-3">Student App CRUD With PHP OOP</h2>
 
-        <h5 class="return_massage">
+        <h5 class="return_massage mb-3">
             <?php 
                 if(isset($return_massage)){
                     echo($return_massage);
@@ -41,7 +41,7 @@
         </h5>
 
         <div class="form-wraper"> 
-            <form action="" method="post" enctype="multipart/form-data">
+            <form action="" id="stdForm" method="post" enctype="multipart/form-data">
 
                 <div class="input-group mb-3"> 
                     <input class="form-control" type="text" name="std_name" id="name" placeholder="Enter Name">
@@ -93,5 +93,36 @@
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+            const form = $('#stdForm');
+    
+            let name = $(form).find('#name');
+            let roll = $(form).find('#roll');
+            let photo = $(form).find('#photo');
+
+            const massageHolder = $('.return_massage');
+
+            $(form).submit(function(){
+                if($(name).val() == ''){
+                    $(massageHolder).html('Name Is Empty');
+                    return false;
+                }else if($(roll).val() == ''){
+                    $(massageHolder).html('Roll Is Empty');
+                    return false;
+                }else if($(photo).val() == ''){
+                    $(massageHolder).html('Photo Is Empty');
+                    return false;
+                }else{
+                    $(massageHolder).html('');
+                    return;
+                }
+            });
+
+        });
+    </script>
+
   </body>
 </html>
