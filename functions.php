@@ -41,25 +41,30 @@
                 echo "Error: " . $sql . "<br>" . $this->conn->error;
             }
 
-            // if(mysqli_query($this->conn, $query)){
-            //     move_uploaded_file($std_photo_tmp, 'upload/'.$std_photo_name);
-
-            //     return 'Information Added Successfully';
-            // }
         }
 
         // Select Student Data
         public function selectInformation(){
-
             $sql = "SELECT * FROM student_data";
             $result = $this->conn->query($sql);
 
             if($result){
                 return $result;
             }
-
         }
-        
+
+
+        // Delete Student Information
+        public function deleteInformation($id){
+            $sql = "DELETE FROM student_data WHERE id='$id'";
+            $result = $this->conn->query($sql);
+
+            if($result){
+                return "Data Deleted Successfully";
+            }else{
+                return "Data Not Deleted";
+            }
+        }
     }
 
 ?>
