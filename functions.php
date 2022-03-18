@@ -89,6 +89,45 @@
                 return "Error: " . $sql . "<br>" . $this->conn->error;
             }
         }
+
+        // Update Student Information
+        public function updateInformation($data){
+            $std_id = $data['std_id'];
+            $std_name = $data['std_name'];
+            $std_rool = $data['std_rool'];
+            $std_photo = $_FILES['std_photo'];
+            $std_photo_name = $std_photo['name'];
+            $std_photo_tmp = $std_photo['tmp_name'];
+
+            if(file_exists($_FILES["std_photo"]["tmp_name"])){
+                // File Input Valid
+
+                // Get Current Image Name
+                $id_info = $this->GetInformationById($std_id);
+                $current_photo_name = $id_info['img'];
+
+                // Update Data With Image
+                $sql = "UPDATE student_data SET name = '$std_name', rool = '$std_rool', img = '$std_photo_name' WHERE id = $std_id";
+                $result = $this->conn->query($sql);
+
+                if($result){
+                    move_uploaded_file($std_photo_tmp, './upload/'.$std_photo_name);
+                    unlink('./upload/' . $current_photo_name);
+
+                    return 'Student Data Updated';
+                }
+            }else{
+                // File Input Un Valid
+                $sql = "UPDATE student_data SET name = '$std_name', rool = '$std_rool' WHERE id = $std_id";
+                $result = $this->conn->query($sql);
+
+                if($result){
+                    return 'Student Data Updated';
+                }
+
+            }
+
+        }
     }
 
 ?>

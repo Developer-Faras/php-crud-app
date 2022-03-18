@@ -8,6 +8,13 @@
         $edit_id = $_GET['edit_id'];
 
         $data = $app->GetInformationById($edit_id);
+    }else{
+        $data = ['name'=> '', 'rool'=> '', 'id'=> ''];
+    }
+
+    // Update Information
+    if(isset($_POST['update_info'])){
+        $return_massage = $app->updateInformation($_POST);
     }
 
 ?>  
@@ -36,9 +43,13 @@
 
         <h5 class="return_massage mb-3">
             <?php 
-                // if(isset($return_massage)){
-                //     echo($return_massage);
-                // }
+                if(isset($return_massage)){
+                    echo($return_massage);
+
+                    $page = './index.php';
+                    $sec = "2";
+                    header("Refresh: $sec; url=$page");
+                }
             ?>
         </h5>
 
@@ -61,7 +72,7 @@
                 <input type="hidden" name="std_id"  value="<?php echo $data['id'];?>">
                 
                 <div class="input-group"> 
-                    <input name="add_info" type="submit" value="Update Information" class="bg-success text-light form-control submit-btn bold">
+                    <input name="update_info" type="submit" value="Update Information" class="bg-warning text-light form-control submit-btn bold">
                 </div>
             </form>
         </div>
@@ -89,9 +100,6 @@
                     return false;
                 }else if($(roll).val() == ''){
                     $(massageHolder).html('Roll Is Empty');
-                    return false;
-                }else if($(photo).val() == ''){
-                    $(massageHolder).html('Photo Is Empty');
                     return false;
                 }else{
                     $(massageHolder).html('');
