@@ -1,6 +1,5 @@
 <?php
     include_once('./functions.php');
-
     $app = new CrudApp();
 
     // Add Information
@@ -8,13 +7,10 @@
        $return_massage = $app->addInformation($_POST);
     }
 
-
     // Delete Information
     if(isset($_GET['delete_id'])){
         $delete_id = $_GET['delete_id'];
-
         $return_massage = $app->deleteInformation($delete_id);
-
     }
 
 ?>  
@@ -45,6 +41,10 @@
             <?php 
                 if(isset($return_massage)){
                     echo($return_massage);
+
+                    $page = $_SERVER['PHP_SELF'];
+                    $sec = "2";
+                    header("Refresh: $sec; url=$page");
                 }
             ?>
         </h5>

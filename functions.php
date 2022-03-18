@@ -11,7 +11,6 @@
             define("DB_PASSWORD", "");
             define("DB_DATABASE", "crud-app");
 
-            // $this->conn = mysqli_connect(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
             $this->conn = new mysqli(DB_SERVER , DB_USER, DB_PASSWORD, DB_DATABASE);
             
 
@@ -53,13 +52,25 @@
             }
         }
 
-
         // Delete Student Information
         public function deleteInformation($id){
+            // Get Image Name
+            $img_name_sql = "SELECT * FROM student_data WHERE id='$id'";
+            $img_name_result = $this->conn->query($img_name_sql);
+
+            if($img_name_result){
+                $row = $img_name_result->fetch_assoc();
+
+                $img_name = $row['img'];
+            }
+
+            // Delete Information
             $sql = "DELETE FROM student_data WHERE id='$id'";
             $result = $this->conn->query($sql);
 
             if($result){
+                unlink('./upload/' . $img_name);
+
                 return "Data Deleted Successfully";
             }else{
                 return "Data Not Deleted";
