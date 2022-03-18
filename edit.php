@@ -3,9 +3,11 @@
 
     $app = new CrudApp();
 
-    // Add Information
-    if(isset($_POST['add_info'])){
-       $return_massage = $app->addInformation($_POST);
+    // Get Information
+    if(isset($_GET['edit_id'])){
+        $edit_id = $_GET['edit_id'];
+
+        $data = $app->GetInformationById($edit_id);
     }
 
 ?>  
@@ -34,9 +36,9 @@
 
         <h5 class="return_massage mb-3">
             <?php 
-                if(isset($return_massage)){
-                    echo($return_massage);
-                }
+                // if(isset($return_massage)){
+                //     echo($return_massage);
+                // }
             ?>
         </h5>
 
@@ -44,11 +46,11 @@
             <form action="" id="stdForm" method="post" enctype="multipart/form-data">
 
                 <div class="input-group mb-3"> 
-                    <input class="form-control" type="text" name="std_name" id="name" placeholder="Enter Name">
+                    <input class="form-control" value="<?php echo $data['name'];?>" type="text" name="std_name" id="name" placeholder="Enter Name">
                 </div>
                 
                 <div class="input-group mb-3"> 
-                    <input class="form-control" type="text" name="std_rool" id="roll" placeholder="Enter Roll">
+                    <input class="form-control" value="<?php echo $data['rool'];?>" type="text" name="std_rool" id="roll" placeholder="Enter Roll">
                 </div>
 
                 <div class="input-group flex-column mb-4"> 
@@ -56,50 +58,16 @@
                     <input type="file" class="form-control w-100" name="std_photo" id="photo" >
                 </div>
 
+                <input type="hidden" name="std_id"  value="<?php echo $data['id'];?>">
+                
                 <div class="input-group"> 
-                    <input name="add_info" type="submit" value="Add Information" class="bg-success text-light form-control submit-btn bold">
+                    <input name="add_info" type="submit" value="Update Information" class="bg-success text-light form-control submit-btn bold">
                 </div>
             </form>
         </div>
 
     </div>
 
-    <div class="container py-3 px-4 shadow"> 
-        <table class="table table-responsive"> 
-
-            <thead> 
-                <th class="">Id</th>
-                <th class="">Name</th>
-                <th class="">Roll</th>
-                <th class="">Image</th>
-                <th class="">Actions</th>
-            </thead>
-
-            <tbody> 
-                <?php 
-                    $result = $app->selectInformation();
-
-                    if ($result->num_rows > 0) {
-                        $id = 0;
-
-                        while($row = $result->fetch_assoc()) {
-                            $id++;
-
-                            $html = '<tr><td class="bold">'.$id.'</td><td class="bold">'.$row['name'].'</td><td class="bold">'.$row['rool'].'</td><td><img class="student-image" src="./upload/'.$row['img'].'" alt="'.$row['name'].'"></td> <td><a href="./edit.php?id='.$row['id'].'" class="btn btn-sm btn-warning bold text-light mx-2">EDIT</a><a href="./delete.php?id='.$row['id'].'" class="btn btn-sm btn-danger bold text-light">DELETE</a></td></tr>';
-                            echo($html);
-                        }
-
-
-                    } else {
-                        echo "0 results";
-                    }
-                ?>
-                
-            </tbody>
-        </table>
-
-        
-    </div>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

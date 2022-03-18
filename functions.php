@@ -37,7 +37,7 @@
 
                 return 'Information Added Successfully';
             } else {
-                echo "Error: " . $sql . "<br>" . $this->conn->error;
+                return "Error: " . $sql . "<br>" . $this->conn->error;
             }
 
         }
@@ -74,6 +74,19 @@
                 return "Data Deleted Successfully";
             }else{
                 return "Data Not Deleted";
+            }
+        }
+
+        // Select Information By Id
+        public function GetInformationById($id){
+            $sql = "SELECT * FROM student_data WHERE id='$id'";
+            $result = $this->conn->query($sql);
+            $student_data = $result->fetch_assoc();
+
+            if($result){
+                return $student_data;
+            }else{
+                return "Error: " . $sql . "<br>" . $this->conn->error;
             }
         }
     }

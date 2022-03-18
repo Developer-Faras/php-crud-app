@@ -94,7 +94,7 @@
                         while($row = $result->fetch_assoc()) {
                             $id++;
 
-                            $html = '<tr><td class="bold">'.$id.'</td><td class="bold">'.$row['name'].'</td><td class="bold">'.$row['rool'].'</td><td><img class="student-image" src="./upload/'.$row['img'].'" alt="'.$row['name'].'"></td> <td><a href="./edit.php?id='.$row['id'].'" class="btn btn-sm btn-warning bold text-light mx-2">EDIT</a><a href="?delete_id='.$row['id'].'" class="btn btn-sm btn-danger bold text-light">DELETE</a></td></tr>';
+                            $html = '<tr><td class="bold">'.$id.'</td><td class="bold">'.$row['name'].'</td><td class="bold">'.$row['rool'].'</td><td><img class="student-image" src="./upload/'.$row['img'].'" alt="'.$row['name'].'"></td> <td><a href="./edit.php?edit_id='.$row['id'].'" class="btn btn-sm btn-warning bold text-light mx-2">EDIT</a><a href="?delete_id='.$row['id'].'" class="btn btn-sm btn-danger bold text-light">DELETE</a></td></tr>';
                             echo($html);
                         }
 
